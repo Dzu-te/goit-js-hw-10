@@ -3,12 +3,10 @@ import iziToast from "izitoast";
 import "flatpickr/dist/flatpickr.min.css";
 import "izitoast/dist/css/iziToast.min.css";
 
-// Function to add leading zero
 function addLeadingZero(value) {
   return value.toString().padStart(2, '0');
 }
 
-// Function to convert milliseconds to days, hours, minutes, and seconds
 function convertMs(ms) {
   const second = 1000;
   const minute = second * 60;
