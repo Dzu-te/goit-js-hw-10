@@ -1,47 +1,39 @@
-import iziToast from "izitoast";
-import "izitoast/dist/css/iziToast.min.css";
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
 const form = document.querySelector('.form');
 
-form.addEventListener('submit', function (event) {
+form.addEventListener('submit', handleSubmit);
+
+function handleSubmit(event) {
   event.preventDefault();
 
-  const delayInput = form.elements.delay;
-  const stateInput = form.elements.state;
-
-  const delay = parseInt(delayInput.value, 10);
-  const state = stateInput.value;
-
-  if (isNaN(delay) || delay <= 0) {
-    iziToast.error({
-      title: 'Error',
-      message: 'Please enter a valid delay (greater than 0).',
-    });
-    return;
-  }
+  const delay = form.elements.delay.value;
+  const inputState = form.elements.state.value;
 
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (state === 'fulfilled') {
-        resolve(delay);
+      if (inputState === 'fulfilled') {
+        resolve('fulfilled');
       } else {
-        reject(delay);
+        reject('rejected');
       }
     }, delay);
   });
 
-  promise.then(
-    (delay) => {
-      iziToast.success({
+  promise
+    .then(() => {
+        iziToast.success({
         title: 'Success',
         message: `✅ Fulfilled promise in ${delay}ms`,
       });
-    },
-    (delay) => {
+    })
+    .catch(() => {
       iziToast.error({
         title: 'Error',
         message: `❌ Rejected promise in ${delay}ms`,
       });
-    }
-  );
-});
+    });
+}
+
+
