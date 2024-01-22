@@ -19,11 +19,11 @@ function handleSubmit(event) {
         reject('rejected');
       }
     }, delay);
-  });
+  }); 
 
   promise
     .then(() => {
-        iziToast.success({
+      iziToast.success({
         title: 'Success',
         message: `✅ Fulfilled promise in ${delay}ms`,
       });
@@ -35,5 +35,3 @@ function handleSubmit(event) {
       });
     });
 }
-
-
