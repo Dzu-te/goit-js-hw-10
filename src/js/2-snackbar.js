@@ -14,24 +14,24 @@ function handleSubmit(event) {
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
       if (inputState === 'fulfilled') {
-        resolve('fulfilled');
+        resolve(`Fulfilled promise in ${delay}ms`);
       } else {
-        reject('rejected');
+        reject('Rejected promise in ${delay}ms');
       }
     }, delay);
   }); 
 
   promise
-    .then(() => {
+    .then((message) => {
       iziToast.success({
         title: 'Success',
-        message: `✅ Fulfilled promise in ${delay}ms`,
+        message: `✅ ${message}`,
       });
     })
     .catch(() => {
       iziToast.error({
         title: 'Error',
-        message: `❌ Rejected promise in ${delay}ms`,
+        message: `❌ ${message}`,
       });
     });
 }

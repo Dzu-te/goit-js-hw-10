@@ -3,9 +3,15 @@ import iziToast from "izitoast";
 import "flatpickr/dist/flatpickr.min.css";
 import "izitoast/dist/css/iziToast.min.css";
 
+let userSelectedDate;  // Оголошуємо тут, щоб зробити доступним у всьому файлі
+
 function addLeadingZero(value) {
   return value.toString().padStart(2, '0');
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+  startButton.disabled = true;
+});
 
 function convertMs(ms) {
   const second = 1000;
@@ -27,8 +33,6 @@ const daysElement = document.querySelector('[data-days]');
 const hoursElement = document.querySelector('[data-hours]');
 const minutesElement = document.querySelector('[data-minutes]');
 const secondsElement = document.querySelector('[data-seconds]');
-
-let userSelectedDate;
 
 flatpickr(datetimePicker, {
   enableTime: true,
@@ -53,6 +57,7 @@ flatpickr(datetimePicker, {
 
 startButton.addEventListener('click', () => {
   startButton.disabled = true;
+
 
   const timerInterval = setInterval(() => {
     const currentDate = new Date();
