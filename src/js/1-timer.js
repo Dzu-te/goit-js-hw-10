@@ -3,14 +3,14 @@ import iziToast from "izitoast";
 import "flatpickr/dist/flatpickr.min.css";
 import "izitoast/dist/css/iziToast.min.css";
 
-let userSelectedDate;  // Оголошуємо тут, щоб зробити доступним у всьому файлі
+let userSelectedDate;  
 
 function addLeadingZero(value) {
   return value.toString().padStart(2, '0');
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  startButton.disabled = true;
+  startButton.disabled = true;  
 });
 
 function convertMs(ms) {
@@ -57,6 +57,7 @@ flatpickr(datetimePicker, {
 
 startButton.addEventListener('click', () => {
   startButton.disabled = true;
+  datetimePicker.disabled = true;
 
 
   const timerInterval = setInterval(() => {
